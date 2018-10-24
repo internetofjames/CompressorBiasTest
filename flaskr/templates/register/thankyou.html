@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block superHeader %}
+    <h1>Thank you!</h1>
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}You have reached the end of this study.{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <section>
+      <p>
+          We appreciate you participating in our study. You have provided valuable data to potentially
+          end the analog vs. digital war once and for all!
+          <strong>Have a nice day!</strong>
+        </p>
+  </section>
+
+  <section>
+    <form method="post">
+        <input type="submit" value="Take another survey">
+    </form>
+  </section>
+{% endblock %}

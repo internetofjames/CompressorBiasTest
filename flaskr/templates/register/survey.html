@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block superHeader %}
+    <h1>Directions</h1>
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}Thank you for participating in this study.{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <section>
+      <p>
+          Your objective is to listen to two audio samples, labeled 'A' and 'B', and select the sample that you believe sounds the best.
+          An unprocessed sample is also available for each question as a basis for comparison.
+          You are free to switch back and forth between the three samples as many times as you'd like, however,
+          once you select and answer and move onto the next question, you cannot go back and change any answers.
+          Please don't load backwards, and only refresh the web page if absolutely necessary. There are 45 questions in this study.
+          <strong>Good luck!</strong>
+        </p>
+  </section>
+
+  <section>
+    <p>
+        <strong>
+            Note: if you do not see your name in the top right corner, you have not registered your information for this survey.
+            You will be redirected to the registration page before being able to proceed.
+        </strong>
+    </p>
+    <form method="post">
+        <input type="submit" value="Proceed">
+    </form>
+  </section>
+{% endblock %}

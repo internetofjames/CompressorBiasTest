@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block superHeader %}
+    <h1>Questions</h1>
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}{{ question_count }} of 45{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <script type="text/javascript" src="/static/jquery-3.3.1.min.js"></script>
+    <audio controls="audioPlayer" autoplay="autoplay" controlsList="nodownload">
+        Sorry, your browser doesn't support html5!
+    </audio>
+    <ul id="playlist">
+        <li><a href="javascript:void(0);" onclick="playSong('{{ unprocessedSample }}')">Unprocessed</a></li>
+        <li><a href="javascript:void(0);" onclick="playSong('{{ sampleA }}')">Sample "A"</a></li>
+        <li><a href="javascript:void(0);" onclick="playSong('{{ sampleB }}')">Sample "B"</a></li>
+    </ul>
+    <script type="text/javascript">
+        function playSong(sample){
+            $('audio').attr('src', '/static/audio/{{currentQuestion}}/'+sample);
+        }
+    </script>
+
+    <p><strong>Please select your choice:</strong></p>
+    <form method="POST">
+        <select name="answer" id="answer">
+            <option value="{{ sampleA }}">Sample "A"</option>
+            <option value="{{ sampleB }}">Sample "B"</option>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Auditory Perception Test</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  {% block superHeader %}{% endblock %}
+  <ul>
+    {% if g.subject %}
+      <li><span>Hello, {{ g.subject['firstName'] }}!</span>
+        <li><a href="{{ url_for('register.logout') }}">Start Over</a>
+    {% else %}
+      <li><a href="{{ url_for('index') }}">Register</a>
+    {% endif %}
+  </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>

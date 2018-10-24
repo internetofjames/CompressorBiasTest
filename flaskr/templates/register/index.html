@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block superHeader %}
+    <h1>Welcome!</h1>
+{% endblock%}
+
+{% block header %}
+  <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="firstName">First Name</label>
+        <input name="firstName" id="firstName" required>
+        <label for="lastName">Last Name</label>
+        <input name="lastName" id="lastName" required>
+        <label for="email">Email</label>
+        <input name="email" id="email" required>
+        <input type="submit" value="Take the Quiz">
+    </form>
+{% endblock %}
