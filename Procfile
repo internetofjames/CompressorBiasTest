@@ -1,3 +1,1 @@
-'''Procfile'''
-1. web: gunicorn run:app
-2.
+web: gunicorn run:flaskr
