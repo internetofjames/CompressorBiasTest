@@ -47,7 +47,7 @@ def index():
 @bp.route('/survey', methods=('GET','POST'))
 def survey_info():
     if request.method == 'POST':
-        return redirect(url_for('question.question1'))
+        return redirect(url_for('question.question'))
     return render_template('register/survey.html')
 
 @bp.route('/thankyou', methods=('GET', 'POST'))

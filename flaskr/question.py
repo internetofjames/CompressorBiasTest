@@ -15,6 +15,46 @@ questions = os.listdir('flaskr/static/audio')
 # Lots of redundant code because all 45 questions have the same method minus the question count
 # Could not figure out how to pass question_count parameter to create subroutes
 
+question_count = 1
+
+
+@bp.route(f'/{question_count}', methods=('GET', 'POST'))
+@register_required
+def question():
+    # question_count = 1
+    global question_count
+    db = get_db()
+    current_question = db.execute(
+        'SELECT * FROM survey WHERE question_name = ?', (questions[question_count],)
+    ).fetchone()
+    currentQuestion = current_question['question_name']
+    unprocessedSample = current_question['unprocessedSample']
+    sampleA = current_question['sampleA']
+    sampleB = current_question['sampleB']
+
+    if request.method == 'POST':
+        answer = request.form['answer']
+        error = None
+
+        if not answer:
+            error = 'Please select an answer'
+
+        if error is not None:
+            flash(error)
+        else:
+            # db = get_db()
+            db.execute(
+                'INSERT INTO question (question_id, answer, subject_id) VALUES (?, ?, ?)',
+                (currentQuestion, answer, g.subject['id'])
+            )
+            db.commit()
+            question_count += 1
+            return redirect(url_for('question.question'))
+
+    return render_template('question/question_page.html', question_count=question_count, currentQuestion=currentQuestion, unprocessedSample=unprocessedSample, sampleA=sampleA, sampleB=sampleB)
+
+
+
 @bp.route('/1', methods=('GET', 'POST'))
 @register_required
 def question1():
